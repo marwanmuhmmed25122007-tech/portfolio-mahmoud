@@ -1,0 +1,31 @@
+{
+  "name": "projrctmahmoud",
+  "version": "1.0.0",
+  "description": "A modern and responsive portfolio website designed and developed for a Mechatronics Engineer to showcase professional experience, technical skills, engineering projects, certifications, and contact information.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marwanmuhmmed25122007-tech/portfolio-mahmoud.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/marwanmuhmmed25122007-tech/portfolio-mahmoud/issues"
+  },
+  "homepage": "https://github.com/marwanmuhmmed25122007-tech/portfolio-mahmoud#readme",
+  "devDependencies": {
+    "clean-css-cli": "^5.6.3",
+    "fs-extra": "^11.4.0",
+    "html-minifier-terser": "^7.2.0",
+    "javascript-obfuscator": "^5.5.0",
+    "terser": "^5.49.0",
+    "vite": "^8.2.0"
+  }
+}
