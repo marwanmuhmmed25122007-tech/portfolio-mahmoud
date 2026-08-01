@@ -20,7 +20,7 @@ A modern and responsive portfolio website designed and developed for a Mechatron
 * JavaScript (ES6)
 * Responsive Design
 * CSS Animations & Transitions
-* 3D Split 
+
 
 ## 🎯 Purpose
 
@@ -33,8 +33,6 @@ The website is optimized for:
 * Desktop
 * Tablet
 * Mobile Devices
-
-## 🌐 Live Demo
 
 
 ## 📧 Contact
