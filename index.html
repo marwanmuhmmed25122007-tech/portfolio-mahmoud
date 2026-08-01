@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mahmoud Shamekh | Mechatronics Engineer</title>
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/home.css" />
+  <link rel="stylesheet" href="css/experience.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body>
+  <!-- LOADING SCREEN -->
+  <div id="loader" class="loader">
+    <div class="loader-inner">
+        <div class="loader-text">
+        <span class="loader-pct" id="loaderPct">0%</span>
+      </div>
+      <div class="loader-bar">
+        <div class="loader-fill"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CUSTOM CURSOR  -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- NAVBAR -->
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">
+        <svg class="logo-img" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="50" fill="currentColor" />
+          <text x="51" y="63" text-anchor="middle" font-family="Arial Black, sans-serif" font-size="40"
+            font-weight="900" fill="var(--bg, #fff)">MS</text>
+        </svg>
+        <div class="logo-text">
+          <span class="logo-first">MAHMOUD</span>
+          <span class="logo-last">SHAMEKH</span>
+        </div>
+      </a>
+
+      <button style="cursor: none;" class="hamburger" id="navOpen" aria-label="Open navigation">
+        <span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- NAV OVERLAY -->
+  <div class="nav-overlay" id="navOverlay" aria-hidden="true">
+    <div class="nav-backdrop" id="navBackdrop"></div>
+    <button style="cursor: none;" class="nav-close" id="navClose" aria-label="Close navigation">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2.2"
+        stroke-linecap="round">
+        <line x1="2" y1="2" x2="16" y2="16" />
+        <line x1="16" y1="2" x2="2" y2="16" />
+      </svg>
+    </button>
+    <div class="nav-panel">
+      <p class="nav-section-label">Navigation</p>
+      <ul class="nav-panel-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="projects.html">Work</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <p class="nav-socials-label">Socials</p>
+      <div class="nav-socials">
+        <a target="_blank" href="https://github.com/Shamekh21">GitHub</a>
+        <a target="_blank" href="https://www.linkedin.com/in/mahmoud-mohamed-7784ab2a5/">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO / INTRO SECTION -->
+  <section id="hero" class="intro-section">
+    <div class="intro-container">
+      <div class="intro-top-label">
+        CRAFTING BEAUTIFUL DIGITAL EXPERIENCES
+      </div>
+
+      <div class="intro-title-wrapper">
+        <h1 class="intro-title">
+          <span class="intro-title-line">MAHMOUD</span>
+          <span class="intro-title-line">SHAMEKH</span>
+        </h1>
+      </div>
+    </div>
+
+    <!-- ROTATING CIRCLE BADGE -->
+    <div class="intro-badge" aria-label="Available for work">
+      <svg viewBox="0 0 200 200" width="160" height="160" class="intro-badge-svg">
+        <defs>
+          <path id="circlePath" d="M 100, 100 m -70, 0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0" />
+        </defs>
+        <text fill="#ffffff" font-family="var(--font-mono)" font-size="12.5" font-weight="700" letter-spacing="2.2">
+          <textPath href="#circlePath" startOffset="0%">
+            AVAILABLE • TO • WORK • AVAILABLE • TO • WORK •
+          </textPath>
+        </text>
+      </svg>
+    </div>
+  </section>
+
+  <!--  ABOUT SECTION  -->
+  <section id="about" class="about-section">
+    <div class="container">
+
+      <!-- Section Title & Line -->
+      <h2 class="about-main-title" id="aboutTitle">ABOUT</h2>
+      <div class="about-divider" id="aboutDivider"></div>
+
+      <!-- Main Emerging About Card -->
+      <div class="about-card" id="aboutCard">
+        <div class="about-card-inner">
+
+          <!-- Left Column: Portrait -->
+          <div class="about-col-left">
+            <div class="about-portrait-frame">
+              <img src="images/photo(1).jpg" alt="Mahmoud Shamekh - Mechatronics Engineer" class="about-portrait-img" />
+            </div>
+          </div>
+
+          <!-- Right Column: Info & Bio -->
+          <div class="about-col-right">
+
+            <h3 class="about-headline" id="aboutHeadline">
+              PASSIONATE ABOUT MECHATRONICS ENGINEERING &amp; INTELLIGENT AUTOMATION SYSTEMS — FROM DESIGN TO REAL-WORLD
+              IMPLEMENTATION.
+            </h3>
+
+            <div class="about-bio-text" id="aboutBioText">
+              <p>
+                I am a Mechatronics Engineering student at Benha University, deeply committed to bridging mechanical
+                design, electrical control systems, and software intelligence into cohesive automation solutions.
+              </p>
+              <p>
+                My technical focus spans PLC programming, industrial control panel design, SCADA systems, HMI
+                development, robotics, and embedded microcontrollers (Arduino, STM32, Embedded C++). I specialize in
+                designing reliable, high-performance control architectures that solve complex industrial challenges.
+              </p>
+              <p>
+                Driven by systematic problem-solving and technical precision, I am passionate about modern industrial
+                automation, continuous engineering innovation, and engineering real-world systems that think, move, and
+                adapt.
+              </p>
+            </div>
+
+            <div class="about-cta-row" id="aboutCtaRow">
+              <a href="#contact" class="btn-primary">GET IN TOUCH <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="projects.html" class="btn-ghost">VIEW PROJECTS</a>
+            </div>
+
+          </div><!-- /.about-col-right -->
+
+        </div><!-- /.about-card-inner -->
+      </div><!-- /.about-card -->
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       EXPERIENCE — Sticky Stacking Scroll
+       All classes prefixed .xp-* — no other section affected
+  ══════════════════════════════════════════════════════════ -->
+  <section id="experience" class="xp-section">
+
+    <!-- Section heading -->
+    <div class="xp-header">
+      <span class="xp-header-label">Crafting with &lt;code /&gt; and precision</span>
+      <h2 class="xp-header-title">EXPERI<wbr>ENCE<span>.</span></h2>
+      <div class="xp-header-divider"></div>
+    </div>
+
+    <!-- Sticky stack -->
+    <div class="xp-stack" id="xpStack">
+
+      <!-- ── Card 1 ── -->
+      <article class="xp-card" id="xpCard0">
+        <div class="xp-card-header">
+          <span class="xp-card-index">01</span>
+          <h3 class="xp-card-title">Body Team Engineer</h3>
+          <div class="xp-card-meta">
+            <span class="xp-card-company">Shoubra Racing Team</span>
+            <span class="xp-card-date">2022 — Present</span>
+          </div>
+        </div>
+        <div class="xp-card-body">
+          <p class="xp-card-desc">
+            Designing and optimising aerodynamic body components for a competitive racing vehicle.
+            I focused on structural integrity, material selection, and performance engineering under race conditions.
+          </p>
+          <ul class="xp-points">
+            <li class="xp-point">
+              <span class="xp-point-num">01</span>
+              <span class="xp-point-text">CAD Modelling &amp; Aerodynamic Body Design</span>
+            </li>
+            <li class="xp-point">
+              <span class="xp-point-num">02</span>
+              <span class="xp-point-text">Finite Element Analysis (FEA) for Drag Reduction</span>
+            </li>
+            <li class="xp-point">
+              <span class="xp-point-num">03</span>
+              <span class="xp-point-text">Material Selection under Competitive Conditions</span>
+            </li>
+          </ul>
+          <div class="xp-tags">
+            <span class="xp-tag">CAD</span>
+            <span class="xp-tag">FEA</span>
+            <span class="xp-tag">Aerodynamics</span>
+            <span class="xp-tag">Fusion 360</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── Card 2 ── -->
+      <article class="xp-card" id="xpCard1">
+        <div class="xp-card-header">
+          <span class="xp-card-index">02</span>
+          <h3 class="xp-card-title">Robotics &amp; Arduino Member</h3>
+          <div class="xp-card-meta">
+            <span class="xp-card-company">IEEE BUB Student Branch</span>
+            <span class="xp-card-date">2023 — Present</span>
+          </div>
+        </div>
+        <div class="xp-card-body">
+          <p class="xp-card-desc">
+            Developing and programming Arduino-based robotic systems while collaborating on
+            hardware–software integration, sensor calibration, and real-time control algorithms
+            for competitive robotics challenges.
+          </p>
+          <ul class="xp-points">
+            <li class="xp-point">
+              <span class="xp-point-num">01</span>
+              <span class="xp-point-text">Arduino Robotic Systems Development</span>
+            </li>
+            <li class="xp-point">
+              <span class="xp-point-num">02</span>
+              <span class="xp-point-text">Hardware–Software Integration &amp; Sensor Calibration</span>
+            </li>
+            <li class="xp-point">
+              <span class="xp-point-num">03</span>
+              <span class="xp-point-text">Real-Time Control Algorithms for Competitive Robotics</span>
+            </li>
+          </ul>
+          <div class="xp-tags">
+            <span class="xp-tag">Arduino</span>
+            <span class="xp-tag">C++</span>
+            <span class="xp-tag">Robotics</span>
+            <span class="xp-tag">Sensors</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── Card 3 ── -->
+      <article class="xp-card" id="xpCard2">
+        <div class="xp-card-header">
+          <span class="xp-card-index">03</span>
+          <h3 class="xp-card-title">Business Development Member</h3>
+          <div class="xp-card-meta">
+            <span class="xp-card-company">Rally Benha University</span>
+            <span class="xp-card-date">Apr 2024 — 2025</span>
+          </div>
+        </div>
+        <div class="xp-card-body">
+          <p class="xp-card-desc">
+            Supporting sponsorship outreach, strategic event planning, and partnership development
+            to strengthen the team's communication, brand presence, and long-term visibility.
+          </p>
+          <ul class="xp-points">
+            <li class="xp-point">
+              <span class="xp-point-num">01</span>
+              <span class="xp-point-text">Sponsorship Outreach &amp; Strategic Event Planning</span>
+            </li>
+            <li class="xp-point">
+              <span class="xp-point-num">02</span>
+              <span class="xp-point-text">Partnership Building &amp; Brand Communication</span>
+            </li>
+            <li class="xp-point">
+              <span class="xp-point-num">03</span>
+              <span class="xp-point-text">Team Visibility &amp; Marketing Initiatives</span>
+            </li>
+          </ul>
+          <div class="xp-tags">
+            <span class="xp-tag">Business Dev</span>
+            <span class="xp-tag">Teamwork</span>
+            <span class="xp-tag">Communication</span>
+            <span class="xp-tag">Marketing</span>
+          </div>
+        </div>
+      </article>
+
+    </div><!-- /.xp-stack -->
+
+    <div class="xp-bottom-spacer"></div>
+  </section>
+  <!-- ═══════════════════════ END EXPERIENCE ══════════════════════ -->
+
+  <section id="projects" class="projects-section">
+    <div class="container">
+
+      <div class="projects-header reveal">
+        <div class="projects-header-left">
+          <h2 class="section-title-xl">PROJECTS<span style="color: #f5c518;">.</span></h2>
+        </div>
+        <a href="projects.html" class="view-all-btn">
+          VIEW ALL MY WORKS <i class="fa-solid fa-chevron-right"></i>
+        </a>
+      </div>
+
+      <!-- HORIZONTAL SCROLL-JACK STAGE -->
+      <div class="ps-outer" id="psOuter">
+        <div class="ps-sticky" id="psSticky">
+          <div class="ps-stage">
+
+            <div class="ps-track" id="psTrack">
+
+              <!-- CARD 1 -->
+              <article class="pc" data-index="01">
+                <a href="https://github.com/Shamekh21/Ball-and-Beam-Control-System" target="_blank" class="pc__link">
+                  <div class="pc__img-wrap">
+                    <img src="images/project(1).jpg" alt="Ball and Beam project" class="pc__img">
+                    <div class="pc__overlay"></div>
+
+                    <div class="pc__floating">
+                      <div class="pc__topline">
+                        <span class="pc__category">Ball and Beam Control System</span>
+                        <span class="pc__dot">•</span>
+                        <span class="pc__year">2025</span>
+                      </div>
+
+                      <div class="pc__content">
+                        <h3 class="pc__title">BALL &amp; BEAM CONTROL</h3>
+                        <p class="pc__sub">
+                          Real-time PID stabilization of an unstable mechanical system using Arduino, MATLAB, and
+                          ultrasonic feedback.
+                        </p>
+                        <div class="pc__bottom">
+                          <div class="pc__tags">
+                            <span>PID</span>
+                            <span>MATLAB</span>
+                            <span>Arduino</span>
+                            <span>Control Systems</span>
+                          </div>
+                          <span class="pc__cta primary">View Project <span class="pc__arrow">↗</span></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </article>
+
+              <!-- CARD 2 -->
+              <article class="pc" data-index="02">
+                <a href="https://github.com/Shamekh21/Line-Follower-Robot-PID-Control" target="_blank" class="pc__link">
+                  <div class="pc__img-wrap">
+                    <img src="images/project(2).jpg" alt="Line follower robot project" class="pc__img">
+                    <div class="pc__overlay"></div>
+
+                    <div class="pc__floating">
+                      <div class="pc__topline">
+                        <span class="pc__category">Line-Follower-Robot-PID-Control</span>
+                        <span class="pc__dot">•</span>
+                        <span class="pc__year">2026</span>
+                      </div>
+
+                      <div class="pc__content">
+                        <h3 class="pc__title">LINE FOLLOWER ROBOT</h3>
+                        <p class="pc__sub">
+                          High-speed autonomous navigation using PID control and real-time sensor feedback.
+                        </p>
+                        <div class="pc__bottom">
+                          <div class="pc__tags">
+                            <span>Arduino</span>
+                            <span>SolidWorks</span>
+                            <span>Embedded C++</span>
+                            <span>PID</span>
+                          </div>
+                          <span class="pc__cta">View Project <span class="pc__arrow">↗</span></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </article>
+
+              <!-- CARD 3 -->
+              <article class="pc" data-index="03">
+                <a href="#" class="pc__link">
+                  <div class="pc__img-wrap">
+                    <img src="images/projects/drone-project.png" alt="Drone project" class="pc__img">
+                    <div class="pc__overlay"></div>
+
+                    <div class="pc__floating">
+                      <div class="pc__topline">
+                        <span class="pc__category">Autonomous Systems</span>
+                        <span class="pc__dot">•</span>
+                        <span class="pc__year">2025</span>
+                      </div>
+
+                      <div class="pc__content">
+                        <h3 class="pc__title">AUTONOMOUS DRONE</h3>
+                        <p class="pc__sub">
+                          Intelligent drone platform with real-time sensing, path planning, and autonomous navigation
+                          behavior.
+                        </p>
+                        <div class="pc__bottom">
+                          <div class="pc__tags">
+                            <span>ROS</span>
+                            <span>Python</span>
+                            <span>Sensors</span>
+                          </div>
+                          <span class="pc__cta">View Project <span class="pc__arrow">↗</span></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </article>
+
+            </div><!-- /ps-track -->
+
+          </div><!-- /ps-stage -->
+        </div><!-- /ps-sticky -->
+      </div><!-- /ps-outer -->
+
+    </div><!-- /container -->
+  </section>
+
+  <!-- SKILLS  -->
+  <section id="skills" class="skills-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div>
+          <h2 class="section-title-lg">SKILLS &amp; TOOLKIT<span style="color: #f5c518;">.</span></h2>
+        </div>
+      </div>
+
+      <div class="marquee-wrapper">
+        <!-- Row 1 – scrolls left -->
+        <div class="marquee marquee-left">
+          <div class="marquee-content">
+            <span class="skill-item">FUSION 360</span>
+            <span class="diamond">✦</span>
+            <span class="skill-item">SOLIDWORKS</span>
+            <span class="diamond">✦</span>
+            <span class="skill-item">MATLAB</span>
+            <span class="diamond">✦</span>
+            <span class="skill-item">ARDUINO</span>
+            <span class="diamond">✦</span>
+            <span class="skill-item">STM32</span>
+            <span class="diamond">✦</span>
+            <span class="skill-item">ROS</span>
+            <span class="diamond">✦</span>
+            <span class="skill-item">PYTHON</span>
+            <span class="diamond">✦</span>
+            <span class="skill-item">C++</span>
+            <span class="diamond">✦</span>
+            <span class="skill-item">EMBEDDED C</span>
+            <span class="diamond">✦</span>
+
+            <!-- duplicate for seamless loop -->
+            <span class="skill-item">FUSION 360</span>
+            <span class="diamond">✦</span>
+            <span class="skill-item">SOLIDWORKS</span>
+            <span class="diamond">✦</span>
+            <span class="skill-item">MATLAB</span>
+            <span class="diamond">✦</span>
+            <span class="skill-item">ARDUINO</span>
+            <span class="diamond">✦</span>
+            <span class="skill-item">STM32</span>
+            <span class="diamond">✦</span>
+            <span class="skill-item">ROS</span>
+            <span class="diamond">✦</span>
+            <span class="skill-item">PYTHON</span>
+            <span class="diamond">✦</span>
+            <span class="skill-item">C++</span>
+            <span class="diamond">✦</span>
+            <span class="skill-item">EMBEDDED C</span>
+            <span class="diamond">✦</span>
+          </div>
+        </div>
+
+        <!-- Row 2 – scrolls right -->
+        <div class="marquee marquee-right">
+          <div class="marquee-content">
+            <span class="skill-item">KINEMATICS</span>
+            <span class="diamond">✦</span>
+            <span class="skill-item">CONTROL SYSTEMS</span>
+            <span class="diamond">✦</span>
+            <span class="skill-item">PID CONTROL</span>
+            <span class="diamond">✦</span>
+            <span class="skill-item">FEA ANALYSIS</span>
+            <span class="diamond">✦</span>
+            <span class="skill-item">ROBOTICS</span>
+            <span class="diamond">✦</span>
+            <span class="skill-item">MICROCONTROLLERS</span>
+            <span class="diamond">✦</span>
+            <span class="skill-item">SENSORS</span>
+            <span class="diamond">✦</span>
+            <span class="skill-item">ACTUATORS</span>
+            <span class="diamond">✦</span>
+
+            <!-- duplicate for seamless loop -->
+            <span class="skill-item">KINEMATICS</span>
+            <span class="diamond">✦</span>
+            <span class="skill-item">CONTROL SYSTEMS</span>
+            <span class="diamond">✦</span>
+            <span class="skill-item">PID CONTROL</span>
+            <span class="diamond">✦</span>
+            <span class="skill-item">FEA ANALYSIS</span>
+            <span class="diamond">✦</span>
+            <span class="skill-item">ROBOTICS</span>
+            <span class="diamond">✦</span>
+            <span class="skill-item">MICROCONTROLLERS</span>
+            <span class="diamond">✦</span>
+            <span class="skill-item">SENSORS</span>
+            <span class="diamond">✦</span>
+            <span class="skill-item">ACTUATORS</span>
+            <span class="diamond">✦</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EDUCATION  -->
+  <section id="education" class="education-section">
+    <div class="container">
+      <div class="edu-card reveal">
+        <div class="edu-left">
+          <h2 class="edu-uni">BENHA<br>UNIVERSITY</h2>
+        </div>
+        <div class="edu-right">
+          <div class="edu-degree">
+            <h3>BACHELOR OF MECHATRONICS ENGINEERING</h3>
+            <p>Mechatronics, Robotics &amp; Automation Engineering</p>
+            <p>Faculty of Engineering — Benha</p>
+          </div>
+          <div class="edu-meta">
+            <div class="edu-year-tag">
+              <i class="fa-solid fa-calendar"></i>
+              2022 — 2027
+            </div>
+            <div class="edu-year-tag">
+              <i class="fa-solid fa-location-dot"></i>
+              Cairo, Egypt
+            </div>
+          </div>
+        </div>
+        <div class="edu-glow"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATES  -->
+  <section class="certificates-section">
+    <div class="container">
+
+      <div class="section-header reveal">
+        <div>
+          <h2 class="section-title-lg">CERTIFICATES<span style="color: #f5c518;">.</span></h2>
+        </div>
+      </div>
+
+      <div class="slider-container">
+        <div class="slider-track">
+
+          <div class="cert-card">
+            <div class="cert-stripe"></div>
+            <div class="cert-image">
+              <img src="images/srt-certificate.jpg" alt="SRT Body Team Member">
+            </div>
+            <div class="cert-content">
+              <div class="cert-icon"><i class="fa-solid fa-award"></i></div>
+              <div class="cert-info">
+                <span class="cert-issuer">SRT</span>
+                <h3>Body Team Member</h3>
+                <span class="cert-year">2024/2025</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="cert-card">
+            <div class="cert-stripe"></div>
+            <div class="cert-image">
+              <img src="images/nti-ai.jpg" alt="NTI AI Ambassadors Program">
+            </div>
+            <div class="cert-content">
+              <div class="cert-icon"><i class="fa-solid fa-award"></i></div>
+              <div class="cert-info">
+                <span class="cert-issuer">NTI</span>
+                <h3>AI Ambassadors Program</h3>
+                <span class="cert-year">2024</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="cert-card">
+            <div class="cert-stripe"></div>
+            <div class="cert-image">
+              <img src="images/ha-motor.jpg" alt="Electric Motor & Drive Programming">
+            </div>
+            <div class="cert-content">
+              <div class="cert-icon"><i class="fa-solid fa-award"></i></div>
+              <div class="cert-info">
+                <span class="cert-issuer">HA CONSULTING</span>
+                <h3>Electric Motor & Drive Programming</h3>
+                <span class="cert-year">2025</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="cert-card">
+            <div class="cert-stripe"></div>
+            <div class="cert-image">
+              <img src="images/ha-plc.jpg" alt="PLC Basic Programming">
+            </div>
+            <div class="cert-content">
+              <div class="cert-icon"><i class="fa-solid fa-award"></i></div>
+              <div class="cert-info">
+                <span class="cert-issuer">HA CONSULTING</span>
+                <h3>PLC Basic Programming</h3>
+                <span class="cert-year">2025</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="cert-card">
+            <div class="cert-stripe"></div>
+            <div class="cert-image">
+              <img src="images/ha-classic-control.jpg" alt="Classic Control">
+            </div>
+            <div class="cert-content">
+              <div class="cert-icon"><i class="fa-solid fa-award"></i></div>
+              <div class="cert-info">
+                <span class="cert-issuer">HA CONSULTING</span>
+                <h3>Classic Control</h3>
+                <span class="cert-year">2025</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 6 -->
+          <div class="cert-card">
+            <div class="cert-stripe"></div>
+            <div class="cert-image">
+              <img src="images/nti-embedded.jpg" alt="C and Embedded C programming">
+            </div>
+            <div class="cert-content">
+              <div class="cert-icon"><i class="fa-solid fa-award"></i></div>
+              <div class="cert-info">
+                <span class="cert-issuer">NTI</span>
+                <h3>C and Embedded C Programming</h3>
+                <span class="cert-year">2025</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 7 -->
+          <div class="cert-card">
+            <div class="cert-stripe"></div>
+            <div class="cert-image">
+              <img src="images/ieee-ai.jpg" alt="AI & Computer Vision - 2nd Place">
+            </div>
+            <div class="cert-content">
+              <div class="cert-icon"><i class="fa-solid fa-award"></i></div>
+              <div class="cert-info">
+                <span class="cert-issuer">IEEE BUB</span>
+                <h3>AI & Computer Vision (2nd Place)</h3>
+                <span class="cert-year">2026</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section id="quote" class="quote-section">
+    <div class="container">
+      <div class="quote-card">
+        <div class="quote-mark quote-mark-left">“</div>
+
+        <div class="quote-text">
+          I don't just design systems<br>
+          I engineer ideas into motion
+        </div>
+
+        <div class="quote-mark quote-mark-right">”</div>
+
+        <div class="quote-author">
+          <span class="quote-line"></span>
+          MAHMOUD SHAMEKH
+          <span class="quote-line"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--  CONTACT  -->
+  <section id="contact" class="contact-section">
+    <div class="container">
+
+      <!-- Section Header -->
+      <div class="ct-header">
+        <h2 class="ct-heading">LET'S CONNECT<span style="color: #f5c518;">.</span></h2>
+      </div>
+
+      <!-- Primary Email Card -->
+      <div class="ct-email-card ct-card" id="ctEmailCard">
+        <div class="ct-email-inner">
+          <div class="ct-email-label">
+            <i class="fa-solid fa-envelope"></i>
+            <span>PRIMARY EMAIL</span>
+          </div>
+          <a href="mailto:mmhmdshamekh@gmail.com" class="ct-email-address">mmhmdshamekh@gmail.com</a>
+          <p class="ct-email-note">Usually replies within 24 hours</p>
+        </div>
+        <button class="ct-copy-btn" id="ctCopyBtn" aria-label="Copy email address" title="Copy email">
+          <i class="fa-regular fa-copy ct-copy-icon"></i>
+          <i class="fa-solid fa-check ct-check-icon"></i>
+          <span class="ct-copy-label">Copy</span>
+        </button>
+        <div class="ct-card-glow"></div>
+      </div>
+
+      <!-- Social Channels -->
+      <div class="ct-social-section">
+        <div class="ct-social-header">
+          <h3 class="ct-social-title">Social Channels</h3>
+          <p class="ct-social-sub">Find me on these platforms</p>
+        </div>
+        <div class="ct-social-grid">
+
+          <a href="https://github.com/Shamekh21" target="_blank" class="ct-card ct-social-card">
+            <div class="ct-social-icon-wrap ct-icon-github">
+              <i class="fa-brands fa-github"></i>
+            </div>
+            <div class="ct-social-arrow">↗</div>
+            <div class="ct-social-info">
+              <span class="ct-social-name">GitHub</span>
+              <span class="ct-social-handle">@Shamekh21</span>
+            </div>
+            <div class="ct-card-glow"></div>
+          </a>
+
+          <a href="https://www.linkedin.com/in/mahmoud-mohamed-7784ab2a5/" target="_blank"
+            class="ct-card ct-social-card">
+            <div class="ct-social-icon-wrap ct-icon-linkedin">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </div>
+            <div class="ct-social-arrow">↗</div>
+            <div class="ct-social-info">
+              <span class="ct-social-name">LinkedIn</span>
+              <span class="ct-social-handle">/in/mahmoud-mohamed</span>
+            </div>
+            <div class="ct-card-glow"></div>
+          </a>
+
+          <a href="https://wa.me/+201146935975" target="_blank" class="ct-card ct-social-card">
+            <div class="ct-social-icon-wrap ct-icon-whatsapp">
+              <i class="fa-brands fa-whatsapp"></i>
+            </div>
+            <div class="ct-social-arrow">↗</div>
+            <div class="ct-social-info">
+              <span class="ct-social-name">WhatsApp</span>
+              <span class="ct-social-handle">Direct message</span>
+            </div>
+            <div class="ct-card-glow"></div>
+          </a>
+
+        </div>
+      </div>
+
+      <!-- Resume Card -->
+      <a href="assets/Mahmoud Mohamed Shamekh.pdf" target="_blank" download class="ct-card ct-resume-card">
+        <div class="ct-resume-icon-wrap">
+          <i class="fa-solid fa-file-arrow-down"></i>
+        </div>
+        <div class="ct-resume-info">
+          <span class="ct-resume-title">Resume</span>
+          <span class="ct-resume-sub">View credentials & experience (PDF)</span>
+        </div>
+        <div class="ct-resume-arrow">↗</div>
+        <div class="ct-card-glow"></div>
+      </a>
+
+      <!-- Collaborate Section -->
+      <div class="ct-collab-card ct-card">
+        <div class="ct-collab-header">
+          <h3 class="ct-collab-title">Open to Collaborate On</h3>
+        </div>
+        <div class="ct-chips">
+          <span class="ct-chip">PLC Programming</span>
+          <span class="ct-chip">Industrial Automation</span>
+          <span class="ct-chip">Electrical Panels</span>
+          <span class="ct-chip">Control Systems</span>
+          <span class="ct-chip">SCADA</span>
+          <span class="ct-chip">HMI Development</span>
+          <span class="ct-chip">Robotics</span>
+          <span class="ct-chip">Embedded Systems</span>
+          <span class="ct-chip">Freelance Projects</span>
+          <span class="ct-chip">Engineering Consultation</span>
+        </div>
+        <div class="ct-card-glow"></div>
+      </div>
+
+    </div>
+
+    <!-- Copy success tooltip -->
+    <div class="ct-tooltip" id="ctTooltip">Email copied!</div>
+  </section>
+
+  <footer class="footer">
+
+    <!-- Top divider line -->
+    <div class="footer-rule"></div>
+
+    <!-- Main footer body -->
+    <div class="footer-body">
+      <div class="container footer-grid">
+
+        <!-- GET IN TOUCH -->
+        <div class="footer-col footer-col--touch">
+          <p class="footer-col-label">GET IN TOUCH</p>
+          <div class="footer-email-row">
+            <div class="footer-avatar">
+              <img src="images/photo(1).jpg" alt="Mahmoud Shamekh" />
+            </div>
+            <a href="mailto:mmhmdshamekh@gmail.com" class="footer-email-link">mmhmdshamekh@gmail.com</a>
+          </div>
+          <p class="footer-tagline">Open to freelance projects, collaborations, and full-time opportunities.</p>
+        </div>
+
+        <!-- NAVIGATION -->
+        <div class="footer-col footer-col--nav">
+          <p class="footer-col-label">NAVIGATION</p>
+          <ul class="footer-nav-list">
+            <li><a href="index.html"><span class="footer-nav-dash">——</span> Home</a></li>
+            <li><a href="index.html#about"><span class="footer-nav-dash">——</span> About</a></li>
+            <li><a href="projects.html"><span class="footer-nav-dash">——</span> Work</a></li>
+            <li><a href="index.html#contact"><span class="footer-nav-dash">——</span> Contact</a></li>
+            <li><a href="index.html#skills"><span class="footer-nav-dash">——</span> Skills</a></li>
+            <li><a href="assets/Mahmoud Mohamed Shamekh.pdf" target="_blank" download><span
+                  class="footer-nav-dash">——</span> Resume</a></li>
+          </ul>
+        </div>
+
+        <!-- CONNECT -->
+        <div class="footer-col footer-col--connect">
+          <p class="footer-col-label">Socials</p>
+          <div class="footer-socials">
+            <a href="https://github.com/Shamekh21" target="_blank" aria-label="GitHub" class="footer-social-btn">
+              <i class="fa-brands fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/mahmoud-mohamed-7784ab2a5/" target="_blank" aria-label="LinkedIn"
+              class="footer-social-btn">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Big wordmark -->
+    <div class="footer-wordmark" aria-hidden="true">
+      <span>SHAMEKH<sup class="footer-tm">™</sup></span>
+    </div>
+
+    <!-- Copyright bar -->
+    <div class="footer-bottom">
+      <p>2026 — <a href="https://www.linkedin.com/in/marwan-shamekh-b1b2403a6/" target="_blank"
+          class="footer-bottom-link">All rights reserved</a></p>
+    </div>
+
+
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+  <script src="js/shared.js"></script>
+  <script src="js/home.js"></script>
+  <script src="js/experience.js"></script>
+
+
+
+</body>
+
+</html>
