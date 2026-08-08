@@ -169,3 +169,28 @@ img {
     font-size: clamp(3rem, 7vw, 5.5rem);
   }
 }
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal-item,
+  .intro-top-label,
+  .intro-title-line {
+    will-change: auto;
+  }
+
+  .marquee-left .marquee-content,
+  .marquee-right .marquee-content,
+  .slider-track,
+  .intro-badge-svg {
+    animation: none !important;
+  }
+}

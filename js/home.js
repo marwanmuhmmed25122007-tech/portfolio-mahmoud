@@ -9,8 +9,16 @@
 
   const topLabel = introSec.querySelector('.intro-top-label');
   const titleLines = introSec.querySelectorAll('.intro-title-line');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function runEntrance() {
+    if (prefersReducedMotion) {
+      /* Immediately show elements without animation for reduced-motion users */
+      if (topLabel) { topLabel.style.opacity = 1; topLabel.style.transform = 'none'; }
+      titleLines.forEach(function(line) { line.style.opacity = 1; line.style.transform = 'none'; });
+      return;
+    }
+
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
     if (topLabel) {
@@ -47,25 +55,32 @@
   }
 
   // GSAP ScrollTrigger for Scroll Micro-Interactions
-  if (typeof ScrollTrigger !== 'undefined') {
+  if (typeof ScrollTrigger !== 'undefined' && !prefersReducedMotion) {
     gsap.registerPlugin(ScrollTrigger);
 
-    gsap.to(introSec, {
-      y: -120,
-      scale: 0.93,
-      opacity: 0,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: introSec,
-        start: 'top top',
-        end: 'bottom top',
-        scrub: true
+    /* Use matchMedia to disable hero parallax on mobile where it adds no value */
+    ScrollTrigger.matchMedia({
+      '(min-width: 769px)': function() {
+        gsap.to(introSec, {
+          y: -120,
+          scale: 0.93,
+          opacity: 0,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: introSec,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: true
+          }
+        });
       }
     });
+  } else if (typeof ScrollTrigger !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
   }
 })();
 
-/* ACTIVE NAV LINK (highlight on scroll  */
+/* ACTIVE NAV LINK (highlight on scroll) */
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-link[data-section]');
 
@@ -83,9 +98,7 @@ const sectionObserver = new IntersectionObserver((entries) => {
 sections.forEach(sec => sectionObserver.observe(sec));
 
 
-
-
-/* PROJECTS SECTION */
+/* PROJECTS SECTION — Single horizontal scroll handler (consolidated) */
 (function () {
   var outer = document.getElementById('psOuter');
   var track = document.getElementById('psTrack');
@@ -127,6 +140,10 @@ sections.forEach(sec => sectionObserver.observe(sec));
     if (isMobile()) {
       outer.style.height = 'auto';
       track.style.transform = 'none';
+      if (scrollHandler) {
+        window.removeEventListener('scroll', scrollHandler);
+        scrollHandler = null;
+      }
       return;
     }
     recalc();
@@ -136,7 +153,6 @@ sections.forEach(sec => sectionObserver.observe(sec));
     }
     onScroll();
   }
-
 
   var images = track.querySelectorAll('img');
   var loaded = 0;
@@ -176,86 +192,6 @@ sections.forEach(sec => sectionObserver.observe(sec));
   const track = document.querySelector('.slider-track');
   if (!track) return;
   Array.from(track.children).forEach(card => track.appendChild(card.cloneNode(true)));
-})();
-
-
-
-
-(function () {
-  var outer = document.getElementById('psOuter');
-  var track = document.getElementById('psTrack');
-  var progressBar = document.getElementById('psProgressBar');
-  var dotsWrap = document.getElementById('psDots');
-
-  if (!outer || !track) return;
-
-  var cards = Array.from(track.children);
-
-  if (dotsWrap) {
-    cards.forEach(function (_, i) {
-      var dot = document.createElement('span');
-      if (i === 0) dot.classList.add('active');
-      dotsWrap.appendChild(dot);
-    });
-  }
-  var dots = dotsWrap ? Array.from(dotsWrap.children) : [];
-
-
-  function isMobile() {
-    return window.innerWidth <= 768;
-  }
-
-  function setup() {
-    if (isMobile()) return;
-
-    var maxTranslate = track.scrollWidth - outer.clientWidth;
-    if (maxTranslate < 0) maxTranslate = 0;
-
-
-    var extraScreens = Math.max(1, Math.ceil(maxTranslate / window.innerHeight) + 1);
-    outer.style.height = (extraScreens * 100) + 'vh';
-
-    function onScroll() {
-      var rect = outer.getBoundingClientRect();
-      var total = outer.offsetHeight - window.innerHeight;
-      if (total <= 0) return;
-
-      var scrolled = -rect.top;
-      var progress = scrolled / total;
-      progress = Math.max(0, Math.min(1, progress));
-
-      track.style.transform = 'translateX(-' + (progress * maxTranslate) + 'px)';
-      if (progressBar) progressBar.style.width = (progress * 100) + '%';
-
-      var activeIndex = Math.min(cards.length - 1, Math.round(progress * (cards.length - 1)));
-      dots.forEach(function (d, i) {
-        d.classList.toggle('active', i === activeIndex);
-      });
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-
-    return function cleanup() {
-      window.removeEventListener('scroll', onScroll);
-    };
-  }
-
-  var cleanupFn = setup();
-
-  var resizeTimer;
-  window.addEventListener('resize', function () {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(function () {
-      if (cleanupFn) cleanupFn();
-      if (isMobile()) {
-        outer.style.height = 'auto';
-        track.style.transform = 'none';
-      } else {
-        cleanupFn = setup();
-      }
-    }, 200);
-  });
 })();
 
 
@@ -299,8 +235,7 @@ sections.forEach(sec => sectionObserver.observe(sec));
 })();
 
 
-
-
+/* EXPERIENCE SECTION — Sticky card accordion */
 (function () {
   'use strict';
 
@@ -319,7 +254,6 @@ sections.forEach(sec => sectionObserver.observe(sec));
     if (!section || !stack) return;
 
     var cards    = Array.from(stack.querySelectorAll('.xp-card'));
-    var header   = section.querySelector('.xp-header');
     var numCards = cards.length;
     if (!numCards) return;
 

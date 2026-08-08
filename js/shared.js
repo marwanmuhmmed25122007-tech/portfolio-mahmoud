@@ -32,31 +32,28 @@ const loadInterval = setInterval(() => {
   }
 }, 80);
 
-/* CUSTOM CURSOR */
-if (cursorDot && cursorRing) {
+/* CUSTOM CURSOR — uses transform instead of left/top to avoid layout thrashing */
+if (cursorDot && cursorRing && !('ontouchstart' in window)) {
   let mouseX = 0, mouseY = 0;
   let ringX  = 0, ringY  = 0;
 
   window.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
-    cursorDot.style.left = mouseX + 'px';
-    cursorDot.style.top  = mouseY + 'px';
-  });
+    cursorDot.style.transform = 'translate(' + (mouseX - 3) + 'px,' + (mouseY - 3) + 'px)';
+  }, { passive: true });
 
   (function animateCursor() {
     ringX += (mouseX - ringX) * 0.12;
     ringY += (mouseY - ringY) * 0.12;
-    cursorRing.style.left = ringX + 'px';
-    cursorRing.style.top  = ringY + 'px';
+    cursorRing.style.transform = 'translate(' + (ringX - 18) + 'px,' + (ringY - 18) + 'px)';
     requestAnimationFrame(animateCursor);
   })();
-
-  if ('ontouchstart' in window) {
-    cursorDot.style.display    = 'none';
-    cursorRing.style.display   = 'none';
-    document.body.style.cursor = 'auto';
-  }
+} else if (cursorDot && cursorRing) {
+  /* Touch device — hide cursor elements and skip the rAF loop entirely */
+  cursorDot.style.display    = 'none';
+  cursorRing.style.display   = 'none';
+  document.body.style.cursor = 'auto';
 }
 
 /* NAV OVERLAY (mobile) */
