@@ -23,10 +23,11 @@
     href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <script src="js/security.js"></script>
 </head>
 
 <body>
-  <!-- LOADING SCREEN -->
+  
   <div id="loader" class="loader">
     <div class="loader-inner">
         <div class="loader-text">
@@ -38,12 +39,12 @@
     </div>
   </div>
 
-  <!-- CUSTOM CURSOR  -->
+  
   <div class="cursor-dot" id="cursorDot"></div>
   <div class="cursor-ring" id="cursorRing"></div>
 
-  <!-- NAVBAR -->
-  <!-- NAVBAR -->
+  
+  
   <nav id="navbar">
     <div class="nav-inner">
       <a href="#hero" class="nav-logo">
@@ -64,7 +65,7 @@
     </div>
   </nav>
 
-  <!-- NAV OVERLAY -->
+  
   <div class="nav-overlay" id="navOverlay" aria-hidden="true">
     <div class="nav-backdrop" id="navBackdrop"></div>
     <button style="cursor: none;" class="nav-close" id="navClose" aria-label="Close navigation">
@@ -90,7 +91,7 @@
     </div>
   </div>
 
-  <!-- HERO / INTRO SECTION -->
+  
   <section id="hero" class="intro-section">
     <div class="intro-container">
       <div class="intro-top-label">
@@ -105,7 +106,7 @@
       </div>
     </div>
 
-    <!-- ROTATING CIRCLE BADGE -->
+    
     <div class="intro-badge" aria-label="Available for work">
       <svg viewBox="0 0 200 200" width="160" height="160" class="intro-badge-svg">
         <defs>
@@ -120,26 +121,26 @@
     </div>
   </section>
 
-  <!--  ABOUT SECTION  -->
+  
   <section id="about" class="about-section">
     <div class="container">
 
-      <!-- Section Title & Line -->
+      
       <h2 class="about-main-title" id="aboutTitle">ABOUT</h2>
       <div class="about-divider" id="aboutDivider"></div>
 
-      <!-- Main Emerging About Card -->
+      
       <div class="about-card" id="aboutCard">
         <div class="about-card-inner">
 
-          <!-- Left Column: Portrait -->
+          
           <div class="about-col-left">
             <div class="about-portrait-frame">
               <img src="images/photo(1).webp" alt="Mahmoud Shamekh - Mechatronics Engineer" class="about-portrait-img" loading="lazy" decoding="async" />
             </div>
           </div>
 
-          <!-- Right Column: Info & Bio -->
+          
           <div class="about-col-right">
 
             <h3 class="about-headline" id="aboutHeadline">
@@ -169,25 +170,25 @@
               <a href="projects.html" class="btn-ghost">VIEW PROJECTS</a>
             </div>
 
-          </div><!-- /.about-col-right -->
+          </div>
 
-        </div><!-- /.about-card-inner -->
-      </div><!-- /.about-card -->
+        </div>
+      </div>
 
     </div>
   </section>
   <section id="experience" class="xp-section">
 
-    <!-- Section heading -->
+    
     <div class="xp-header">
       <h2 class="xp-header-title">EXPERI<wbr>ENCE<span>.</span></h2>
       <div class="xp-header-divider"></div>
     </div>
 
-    <!-- Sticky stack -->
+    
     <div class="xp-stack" id="xpStack">
 
-      <!-- ── Card 1 ── -->
+      
       <article class="xp-card" id="xpCard0">
         <div class="xp-card-header">
           <span class="xp-card-index">01</span>
@@ -225,7 +226,7 @@
         </div>
       </article>
 
-      <!-- ── Card 2 ── -->
+      
       <article class="xp-card" id="xpCard1">
         <div class="xp-card-header">
           <span class="xp-card-index">02</span>
@@ -264,7 +265,7 @@
         </div>
       </article>
 
-      <!-- ── Card 3 ── -->
+      
       <article class="xp-card" id="xpCard2">
         <div class="xp-card-header">
           <span class="xp-card-index">03</span>
@@ -318,16 +319,16 @@
         </a>
       </div>
 
-      <!-- HORIZONTAL SCROLL-JACK STAGE -->
+      
       <div class="ps-outer" id="psOuter">
         <div class="ps-sticky" id="psSticky">
           <div class="ps-stage">
 
             <div class="ps-track" id="psTrack">
 
-              <!-- CARD 1 -->
+              
               <article class="pc" data-index="01">
-                <a href="https://github.com/Shamekh21/Ball-and-Beam-Control-System" target="_blank" class="pc__link">
+                <a href="https://github.com/Shamekh21/Ball-and-Beam-Control-System" target="_blank" rel="noopener noreferrer" class="pc__link">
                   <div class="pc__img-wrap">
                     <img src="images/project(1).webp" alt="Ball and Beam project" class="pc__img" loading="lazy" decoding="async">
                     <div class="pc__overlay"></div>
@@ -360,9 +361,9 @@
                 </a>
               </article>
 
-              <!-- CARD 2 -->
+              
               <article class="pc" data-index="02">
-                <a href="https://github.com/Shamekh21/Line-Follower-Robot-PID-Control" target="_blank" class="pc__link">
+                <a href="https://github.com/Shamekh21/Line-Follower-Robot-PID-Control" target="_blank" rel="noopener noreferrer" class="pc__link">
                   <div class="pc__img-wrap">
                     <img src="images/project(2).webp" alt="Line follower robot project" class="pc__img" loading="lazy" decoding="async">
                     <div class="pc__overlay"></div>
@@ -394,7 +395,7 @@
                 </a>
               </article>
 
-              <!-- CARD 3 -->
+              
               <article class="pc" data-index="03">
                 <a href="#" class="pc__link">
                   <div class="pc__img-wrap">
@@ -428,16 +429,16 @@
                 </a>
               </article>
 
-            </div><!-- /ps-track -->
+            </div>
 
-          </div><!-- /ps-stage -->
-        </div><!-- /ps-sticky -->
-      </div><!-- /ps-outer -->
+          </div>
+        </div>
+      </div>
 
-    </div><!-- /container -->
+    </div>
   </section>
 
-  <!-- SKILLS  -->
+  
   <section id="skills" class="skills-section">
     <div class="container">
       <div class="section-header reveal">
@@ -447,7 +448,7 @@
       </div>
 
       <div class="marquee-wrapper">
-        <!-- Row 1 – scrolls left -->
+        
         <div class="marquee marquee-left">
           <div class="marquee-content">
             <span class="skill-item">FUSION 360</span>
@@ -469,7 +470,7 @@
             <span class="skill-item">EMBEDDED C</span>
             <span class="diamond">✦</span>
 
-            <!-- duplicate for seamless loop -->
+            
             <span class="skill-item">FUSION 360</span>
             <span class="diamond">✦</span>
             <span class="skill-item">SOLIDWORKS</span>
@@ -491,7 +492,7 @@
           </div>
         </div>
 
-        <!-- Row 2 – scrolls right -->
+        
         <div class="marquee marquee-right">
           <div class="marquee-content">
             <span class="skill-item">KINEMATICS</span>
@@ -511,7 +512,7 @@
             <span class="skill-item">ACTUATORS</span>
             <span class="diamond">✦</span>
 
-            <!-- duplicate for seamless loop -->
+            
             <span class="skill-item">KINEMATICS</span>
             <span class="diamond">✦</span>
             <span class="skill-item">CONTROL SYSTEMS</span>
@@ -535,7 +536,7 @@
     </div>
   </section>
 
-  <!-- EDUCATION  -->
+  
   <section id="education" class="education-section">
     <div class="container">
       <div class="edu-card reveal">
@@ -564,7 +565,7 @@
     </div>
   </section>
 
-  <!-- CERTIFICATES  -->
+  
   <section class="certificates-section">
     <div class="container">
 
@@ -652,7 +653,7 @@
             </div>
           </div>
 
-          <!-- CARD 6 -->
+          
           <div class="cert-card">
             <div class="cert-stripe"></div>
             <div class="cert-image">
@@ -668,7 +669,7 @@
             </div>
           </div>
 
-          <!-- CARD 7 -->
+          
           <div class="cert-card">
             <div class="cert-stripe"></div>
             <div class="cert-image">
@@ -712,16 +713,16 @@
     </div>
   </section>
 
-  <!--  CONTACT  -->
+  
   <section id="contact" class="contact-section">
     <div class="container">
 
-      <!-- Section Header -->
+      
       <div class="ct-header">
         <h2 class="ct-heading">LET'S CONNECT<span style="color: #f5c518;">.</span></h2>
       </div>
 
-      <!-- Primary Email Card -->
+      
       <div class="ct-email-card ct-card" id="ctEmailCard">
         <div class="ct-email-inner">
           <div class="ct-email-label">
@@ -739,7 +740,7 @@
         <div class="ct-card-glow"></div>
       </div>
 
-      <!-- Social Channels -->
+      
       <div class="ct-social-section">
         <div class="ct-social-header">
           <h3 class="ct-social-title">Social Channels</h3>
@@ -787,8 +788,8 @@
         </div>
       </div>
 
-      <!-- Resume Card -->
-      <a href="assets/Mahmoud Mohamed Shamekh.pdf" target="_blank" download class="ct-card ct-resume-card">
+      
+      <a href="assets/Mahmoud Mohamed Shamekh.pdf" target="_blank" rel="noopener noreferrer" download class="ct-card ct-resume-card">
         <div class="ct-resume-icon-wrap">
           <i class="fa-solid fa-file-arrow-down"></i>
         </div>
@@ -800,7 +801,7 @@
         <div class="ct-card-glow"></div>
       </a>
 
-      <!-- Collaborate Section -->
+      
       <div class="ct-collab-card ct-card">
         <div class="ct-collab-header">
           <h3 class="ct-collab-title">Open to Collaborate On</h3>
@@ -822,20 +823,20 @@
 
     </div>
 
-    <!-- Copy success tooltip -->
+    
     <div class="ct-tooltip" id="ctTooltip">Email copied!</div>
   </section>
 
   <footer class="footer">
 
-    <!-- Top divider line -->
+    
     <div class="footer-rule"></div>
 
-    <!-- Main footer body -->
+    
     <div class="footer-body">
       <div class="container footer-grid">
 
-        <!-- GET IN TOUCH -->
+        
         <div class="footer-col footer-col--touch">
           <p class="footer-col-label">GET IN TOUCH</p>
           <div class="footer-email-row">
@@ -847,7 +848,7 @@
           <p class="footer-tagline">Open to freelance projects, collaborations, and full-time opportunities.</p>
         </div>
 
-        <!-- NAVIGATION -->
+        
         <div class="footer-col footer-col--nav">
           <p class="footer-col-label">NAVIGATION</p>
           <ul class="footer-nav-list">
@@ -856,12 +857,11 @@
             <li><a href="projects.html"><span class="footer-nav-dash">——</span> Work</a></li>
             <li><a href="index.html#contact"><span class="footer-nav-dash">——</span> Contact</a></li>
             <li><a href="index.html#skills"><span class="footer-nav-dash">——</span> Skills</a></li>
-            <li><a href="assets/Mahmoud Mohamed Shamekh.pdf" target="_blank" download><span
-                  class="footer-nav-dash">——</span> Resume</a></li>
+            <li><a href="assets/Mahmoud Mohamed Shamekh.pdf" target="_blank" rel="noopener noreferrer" download><span class="footer-nav-dash">——</span> Resume</a></li>
           </ul>
         </div>
 
-        <!-- CONNECT -->
+        
         <div class="footer-col footer-col--connect">
           <p class="footer-col-label">Socials</p>
           <div class="footer-socials">
@@ -878,12 +878,12 @@
       </div>
     </div>
 
-    <!-- Big wordmark -->
+    
     <div class="footer-wordmark" aria-hidden="true">
       <span>SHAMEKH<sup class="footer-tm">™</sup></span>
     </div>
 
-    <!-- Copyright bar -->
+    
     <div class="footer-bottom">
       <p>2026 — <a href="https://www.linkedin.com/in/marwan-shamekh-b1b2403a6/" target="_blank" rel="noopener"
           class="footer-bottom-link">All rights reserved</a></p>
