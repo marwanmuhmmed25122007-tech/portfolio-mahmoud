@@ -1,193 +1,229 @@
-/**
- * Advanced Website Security & DevTools Neutralizer Script
- * Prevents inspection, blocks F12/shortcuts, and freezes DevTools if opened.
- */
 (function () {
   'use strict';
 
-  // 1. Disable Context Menu (Right Click)
-  document.addEventListener('contextmenu', function (e) {
-    e.preventDefault();
-    return false;
-  }, true);
+  var LOCK_KEY = 'dt_restricted_lock';
+  var CHECK_INTERVAL = 1000; // ms
+  var SIZE_THRESHOLD = 160;
+  var overlay = null;
+  var removedNodes = [];
 
-  // 2. Disable Keyboard Shortcuts for DevTools & View Source
-  document.addEventListener('keydown', function (e) {
-    // F12
-    if (e.key === 'F12' || e.keyCode === 123) {
-      e.preventDefault();
-      e.stopPropagation();
-      return false;
-    }
+  // ---------- Lock state helpers ----------
+  function isLocked() {
+    return sessionStorage.getItem(LOCK_KEY) === 'true';
+  }
+  function setLocked(v) {
+    if (v) sessionStorage.setItem(LOCK_KEY, 'true');
+    else sessionStorage.removeItem(LOCK_KEY);
+  }
 
-    const isControl = e.ctrlKey || e.metaKey;
+  // ---------- Overlay UI ----------
+  function buildOverlay() {
+    if (overlay) return overlay;
 
-    if (isControl) {
-      // Shift combination keys
-      if (e.shiftKey) {
-        // Ctrl + Shift + I / J / C / E / K
-        if (
-          e.key === 'I' || e.key === 'i' || e.keyCode === 73 ||
-          e.key === 'J' || e.key === 'j' || e.keyCode === 74 ||
-          e.key === 'C' || e.key === 'c' || e.keyCode === 67 ||
-          e.key === 'K' || e.key === 'k' || e.keyCode === 75 ||
-          e.key === 'E' || e.key === 'e' || e.keyCode === 69
-        ) {
-          e.preventDefault();
-          e.stopPropagation();
-          return false;
-        }
-      }
+    var style = document.createElement('style');
+    style.textContent =
+      '@keyframes dtPulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.7;transform:scale(1.06);}}' +
+      '@keyframes dtFadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}';
+    document.head.appendChild(style);
 
-      // Ctrl + U (View Source), Ctrl + S (Save Page), Ctrl + P (Print)
-      if (
-        e.key === 'U' || e.key === 'u' || e.keyCode === 85 ||
-        e.key === 'S' || e.key === 's' || e.keyCode === 83 ||
-        e.key === 'P' || e.key === 'p' || e.keyCode === 80
-      ) {
-        e.preventDefault();
-        e.stopPropagation();
-        return false;
-      }
-    }
-  }, true);
+    overlay = document.createElement('div');
+    overlay.id = '__access_restricted_overlay__';
+    overlay.style.cssText = [
+      'position:fixed', 'inset:0', 'width:100vw', 'height:100vh',
+      'z-index:2147483647', 'display:none', 'align-items:center',
+      'justify-content:center', 'padding:24px', 'box-sizing:border-box',
+      'background:radial-gradient(circle at 50% 35%, #1a0f0f 0%, #0a0a0a 60%, #050505 100%)',
+      'font-family:"Segoe UI",system-ui,-apple-system,Roboto,sans-serif'
+    ].join(';');
 
-  // 3. Disable Drag & Select
-  document.addEventListener('dragstart', function (e) {
-    e.preventDefault();
-    return false;
-  }, true);
+    overlay.innerHTML =
+      '<div style="' + [
+        'display:flex', 'flex-direction:column', 'align-items:center',
+        'text-align:center', 'max-width:440px', 'width:100%',
+        'padding:56px 44px',
+        'background:rgba(255,255,255,0.03)',
+        'border:1px solid rgba(255,80,80,0.18)',
+        'backdrop-filter:blur(14px)',
+        '-webkit-backdrop-filter:blur(14px)',
+        'border-radius:20px',
+        'box-shadow:0 25px 70px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.02) inset',
+        'animation:dtFadeUp .5s ease-out'
+      ].join(';') + '">' +
 
-  // 4. DevTools Neutralizer & Freeze Trap
-  function devToolsTrap() {
-    const threshold = 160;
-    const widthThreshold = window.outerWidth - window.innerWidth > threshold;
-    const heightThreshold = window.outerHeight - window.innerHeight > threshold;
+        '<div style="' + [
+          'width:72px', 'height:72px', 'border-radius:50%',
+          'display:flex', 'align-items:center', 'justify-content:center',
+          'background:rgba(255,76,76,0.1)',
+          'border:1px solid rgba(255,76,76,0.35)',
+          'margin-bottom:26px',
+          'animation:dtPulse 2.2s ease-in-out infinite'
+        ].join(';') + '">' +
+          '<span style="font-size:32px;line-height:1;">&#9888;&#65039;</span>' +
+        '</div>' +
 
-    // Detect if DevTools window is docked/opened
-    if (widthThreshold || heightThreshold) {
-      neutralizePage();
-    }
+        '<div style="' + [
+          'color:#f5f5f5', 'font-size:24px', 'font-weight:700',
+          'letter-spacing:1.5px', 'margin-bottom:12px'
+        ].join(';') + '">ACCESS RESTRICTED</div>' +
 
-    // Timing-based Debugger Trap
-    const start = performance.now();
-    (function () {
-      return false;
-    })['constructor']('debugger')();
-    const end = performance.now();
+        '<div style="' + [
+          'color:#ff5c5c', 'font-size:11px', 'font-weight:700',
+          'letter-spacing:3px', 'text-transform:uppercase',
+          'margin-bottom:22px'
+        ].join(';') + '">Dev Tools Detected</div>' +
 
-    if (end - start > 100) {
-      neutralizePage();
+        '<div style="' + [
+          'width:48px', 'height:1px',
+          'background:rgba(255,255,255,0.15)',
+          'margin-bottom:22px'
+        ].join(';') + '"></div>' +
+
+        '<div style="' + [
+          'color:rgba(255,255,255,0.6)', 'font-size:14.5px',
+          'line-height:1.6'
+        ].join(';') + '">Close Developer Tools and refresh the page<br>to continue.</div>' +
+
+      '</div>';
+
+    return overlay;
+  }
+
+  function ensureOverlayAttached() {
+    if (document.body && overlay && !document.body.contains(overlay)) {
+      document.body.appendChild(overlay);
     }
   }
 
-      "use strict";
+  // ---------- Show / Hide (actually removes nodes from DOM) ----------
+  function showRestriction() {
+    if (!document.body) return;
+    ensureOverlayAttached();
 
-    let devToolsDetected = false;
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
 
-    function neutralizePage() {
-        if (devToolsDetected) return;
-
-        devToolsDetected = true;
-
-        try {
-            console.clear();
-        } catch (_) {}
-
-        document.documentElement.innerHTML = `
-            <html>
-            <head>
-                <title>Access Denied</title>
-            </head>
-            <body style="
-                margin:0;
-                display:flex;
-                justify-content:center;
-                align-items:center;
-                min-height:100vh;
-                background:#0b0f19;
-                color:#fff;
-                font-family:Arial,sans-serif;
-                text-align:center;
-            ">
-                <div>
-                    <h1 style="
-                        color:#ff4d4d;
-                        font-size:34px;
-                        margin-bottom:12px;
-                    ">
-                        ⚠️ Access Denied
-                    </h1>
-
-                    <p style="
-                        color:#ccc;
-                        font-size:18px;
-                        max-width:500px;
-                        line-height:1.6;
-                    ">
-                        DevTools inspection is disabled on this site
-                        to protect intellectual property.
-                    </p>
-
-                    <p style="
-                        color:#777;
-                        font-size:14px;
-                        margin-top:25px;
-                    ">
-                        Please close Developer Tools and refresh the page.
-                    </p>
-                </div>
-            </body>
-            </html>
-        `;
+    if (removedNodes.length === 0) {
+      var children = Array.prototype.slice.call(document.body.children);
+      children.forEach(function (el) {
+        if (el === overlay) return;
+        removedNodes.push({ el: el, nextSibling: el.nextSibling });
+        document.body.removeChild(el);
+      });
     }
 
-    function checkDevTools() {
+    overlay.style.display = 'flex';
+  }
 
-        // Method 1: Docked DevTools
-        const widthDifference =
-            window.outerWidth - window.innerWidth;
+  function hideRestriction() {
+    if (!document.body) return;
 
-        const heightDifference =
-            window.outerHeight - window.innerHeight;
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
 
-        if (
-            widthDifference > 160 ||
-            heightDifference > 160
-        ) {
-            neutralizePage();
-            return;
-        }
+    removedNodes.forEach(function (item) {
+      if (item.nextSibling && document.body.contains(item.nextSibling)) {
+        document.body.insertBefore(item.el, item.nextSibling);
+      } else {
+        document.body.appendChild(item.el);
+      }
+    });
+    removedNodes = [];
 
-        // Method 2: debugger timing detection
-        const start = performance.now();
+    if (overlay) overlay.style.display = 'none';
+  }
 
-        debugger;
+  // ---------- Detection ----------
+  function checkBySize() {
+    var widthDiff = window.outerWidth - window.innerWidth > SIZE_THRESHOLD;
+    var heightDiff = window.outerHeight - window.innerHeight > SIZE_THRESHOLD;
+    return widthDiff || heightDiff;
+  }
 
-        const elapsed = performance.now() - start;
+  function checkByTiming() {
+    var start = performance.now();
+    debugger;
+    var end = performance.now();
+    return (end - start) > 100;
+  }
 
-        if (elapsed > 100) {
-            neutralizePage();
-            return;
-        }
+  function detectDevTools() {
+    var detected = checkBySize();
+    if (!detected) {
+      try {
+        detected = checkByTiming();
+      } catch (e) {
+        detected = false;
+      }
+    }
+    return detected;
+  }
+
+  function runCheck() {
+    var open = detectDevTools();
+    if (open) {
+      setLocked(true);
+      showRestriction();
+    } else if (isLocked()) {
+      setLocked(false);
+      hideRestriction();
+    }
+  }
+
+  // ---------- Extra UX deterrents (no freezing) ----------
+  function blockContextMenu() {
+    document.addEventListener('contextmenu', function (e) {
+      e.preventDefault();
+    }, true);
+  }
+
+  function blockDragSelect() {
+    document.addEventListener('dragstart', function (e) {
+      e.preventDefault();
+    }, true);
+  }
+
+  function blockShortcuts() {
+    document.addEventListener('keydown', function (e) {
+      var key = e.key ? e.key.toLowerCase() : '';
+      var ctrlOrCmd = e.ctrlKey || e.metaKey;
+
+      if (e.key === 'F12' || e.keyCode === 123) {
+        e.preventDefault();
+        return;
+      }
+      if (ctrlOrCmd && e.shiftKey && ['i', 'j', 'c', 'k', 'e'].indexOf(key) !== -1) {
+        e.preventDefault();
+        return;
+      }
+      if (ctrlOrCmd && ['u', 's', 'p'].indexOf(key) !== -1) {
+        e.preventDefault();
+        return;
+      }
+    }, true);
+  }
+
+  // ---------- Init ----------
+  function init() {
+    buildOverlay();
+    blockContextMenu();
+    blockDragSelect();
+    blockShortcuts();
+
+    if (isLocked()) {
+      if (checkBySize()) {
+        showRestriction();
+      } else {
+        setLocked(false);
+      }
     }
 
-    // IMPORTANT:
-    // Run immediately when the page loads.
-    checkDevTools();
+    setInterval(runCheck, CHECK_INTERVAL);
+    runCheck();
+  }
 
-    // Keep checking continuously.
-    setInterval(function () {
-        if (!devToolsDetected) {
-            checkDevTools();
-        }
-    }, 500);
-
-    // Clear console periodically.
-    setInterval(function () {
-        try {
-            console.clear();
-        } catch (_) {}
-    }, 1000);
-
+  if (document.body) {
+    init();
+  } else {
+    document.addEventListener('DOMContentLoaded', init, { once: true });
+  }
 })();
