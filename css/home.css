@@ -433,6 +433,34 @@
   flex-shrink: 0;
 }
 
+.xp-card-logo-wrap {
+  width: 46px;
+  height: 46px;
+  min-width: 46px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+
+.xp-card-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+
+.xp-card-logo:not([src]),
+.xp-card-logo[src=""] {
+  opacity: 0;
+}
+
 .xp-card-title {
   font-family: 'DM Sans', sans-serif;
   font-size: clamp(22px, 3.2vw, 38px);
@@ -516,7 +544,24 @@
   transition: color 0.3s ease;
 }
 
-.xp-point:hover .xp-point-num  { color: #666; }
+.xp-point:hover  { color: #666; }
+
+.xp-point-bullet {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1;
+  color: #4a4a4a;
+  min-width: 22px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.xp-point:hover .xp-point-bullet {
+  color: var(--accent, #f5c518);
+  transform: translateX(4px);
+}
 
 .xp-point-text {
   font-family: 'DM Sans', sans-serif;
@@ -1452,7 +1497,7 @@
   background: rgba(245, 197, 24, 0.04);
 }
 
-/* Ã¢â€â‚¬Ã¢â€â‚¬ Copy tooltip Ã¢â€â‚¬Ã¢â€â‚¬ */
+/* ─── Copy tooltip ─── */
 .ct-tooltip {
   position: fixed;
   bottom: 2rem;
@@ -1476,592 +1521,3 @@
   transform: translateX(-50%) translateY(0);
 }
 
-/* Responsive */
- 
-@media (max-width: 767px) {
-  /* Ã¢â‚¬â€ Hero / Intro Ã¢â‚¬â€ */
-  .intro-container {
-    max-width: 100%;
-    padding: 0 1rem;
-  }
-
-  .intro-top-label {
-    font-size: clamp(0.5rem, 2.5vw, 0.7rem);
-    letter-spacing: 0.18em;
-    margin-bottom: 1.5rem;
-  }
-
-  .intro-title-line {
-    font-size: clamp(3rem, 16vw, 5.5rem);
-    margin-bottom: 1rem;
-  }
-
-  .intro-badge {
-    width: 90px;
-    height: 90px;
-    bottom: 1.5rem;
-    right: 1.2rem;
-  }
-
-  .intro-badge-svg {
-    width: 90px;
-    height: 90px;
-  }
-
-  /* Ã¢â‚¬â€ About Ã¢â‚¬â€ */
-  .about-section {
-    padding: 4rem 0 3rem;
-  }
-
-  .about-main-title {
-    font-size: clamp(3rem, 14vw, 5rem);
-    margin-bottom: 1rem;
-  }
-
-  .about-divider {
-    margin-bottom: 2rem;
-  }
-
-  .about-card {
-    padding: 1.5rem;
-    border-radius: 14px;
-  }
-
-  .about-card-inner {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .about-col-left {
-    max-width: 280px;
-    margin: 0 auto;
-  }
-
-  .about-headline {
-    font-size: clamp(1.15rem, 4.5vw, 1.5rem);
-    margin-bottom: 1.2rem;
-    text-align: center;
-  }
-
-  .about-bio-text p {
-    font-size: 0.88rem;
-  }
-
-  .about-cta-row {
-    justify-content: center;
-  }
-
-  .btn-primary,
-  .btn-ghost {
-    font-size: 0.65rem;
-    padding: 0.75rem 1.4rem;
-  }
-
-  /* Ã¢â‚¬â€ Experience Ã¢â‚¬â€ */
-  .xp-header {
-    padding: 64px 16px 36px;
-  }
-
-  .xp-header-title {
-    font-size: clamp(48px, 14vw, 80px);
-  }
-
-  .xp-header-divider {
-    margin-top: 28px;
-  }
-
-  .xp-card-header {
-    padding: 18px 16px;
-    flex-wrap: wrap;
-    gap: 8px 16px;
-  }
-
-  .xp-card-title {
-    font-size: clamp(18px, 5vw, 26px);
-  }
-
-  .xp-card-meta {
-    margin-left: 0;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-    padding-left: 44px;
-  }
-
-  .xp-card-body {
-    padding: 0 16px 32px;
-  }
-
-  .xp-card-desc {
-    font-size: clamp(13px, 3.5vw, 15px);
-    margin-bottom: 24px;
-  }
-
-  .xp-point {
-    gap: 14px;
-    padding: 12px 0;
-  }
-
-  .xp-point-text {
-    font-size: clamp(13px, 3.8vw, 16px);
-  }
-
-  .xp-tags {
-    gap: 8px;
-    margin-top: 20px;
-  }
-
-  .xp-tag {
-    font-size: 9px;
-    padding: 4px 10px;
-  }
-
-  .xp-bottom-spacer {
-    height: 40px;
-  }
-
-  /* Ã¢â‚¬â€ Projects Section (horizontal scroll on mobile becomes vertical) Ã¢â‚¬â€ */
-  .projects-section {
-    padding: 4rem 0;
-  }
-
-  .projects-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-    margin-bottom: 2rem;
-  }
-
-  .ps-sticky {
-    position: relative;
-    height: auto;
-  }
-
-  .ps-stage {
-    height: auto;
-    min-height: auto;
-    border-radius: 0;
-    overflow: visible;
-  }
-
-  .ps-track {
-    flex-direction: column;
-    gap: 16px;
-    padding: 0;
-    height: auto;
-  }
-
-  /* Override the inline home.css .pc sizing for the scrolljack cards */
-  .ps-track .pc {
-    flex: none;
-    width: 100%;
-    height: auto;
-    border-radius: 14px;
-  }
-
-  .ps-track .pc__link {
-    height: auto;
-  }
-
-  .ps-track .pc__img-wrap {
-    height: auto;
-    aspect-ratio: 16 / 10;
-  }
-
-  .ps-track .pc__floating {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: auto;
-    padding: 14px 16px;
-  }
-
-  .ps-track .pc__title {
-    font-size: clamp(1.2rem, 5vw, 1.6rem);
-    color: #fff;
-  }
-
-  .ps-track .pc__sub {
-    font-size: 0.78rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  .ps-track .pc__tags span {
-    font-size: 9px;
-    padding: 3px 8px;
-  }
-
-  /* Ã¢â‚¬â€ Skills Ã¢â‚¬â€ */
-  .skills-section {
-    padding: 4rem 0;
-  }
-
-  .marquee-content {
-    font-size: 1.6rem;
-    gap: 1rem;
-    padding-right: 1rem;
-    letter-spacing: 0.1em;
-  }
-
-  .diamond {
-    font-size: 1.2rem;
-  }
-
-  .marquee-wrapper {
-    padding: 1.5rem 0;
-    margin-top: 1rem;
-  }
-
-  /* Ã¢â‚¬â€ Education Ã¢â‚¬â€ */
-  .education-section {
-    padding: 3.5rem 0;
-  }
-
-  .edu-card {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    padding: 1.5rem;
-  }
-
-  .edu-uni {
-    font-size: clamp(2rem, 9vw, 3rem);
-    text-align: center;
-  }
-
-  .edu-degree h3 {
-    font-size: 1.2rem;
-  }
-
-  .edu-meta {
-    flex-direction: column;
-    gap: 0.6rem;
-  }
-
-  .edu-year-tag {
-    font-size: 0.6rem;
-    padding: 0.35rem 0.7rem;
-  }
-
-  /* Ã¢â‚¬â€ Certificates Ã¢â‚¬â€ */
-  .certificates-section {
-    padding: 4rem 0;
-  }
-
-  .cert-card {
-    width: 260px;
-  }
-
-  .cert-image {
-    height: 150px;
-  }
-
-  .cert-content {
-    padding: 1rem;
-    gap: 0.8rem;
-  }
-
-  .cert-info h3 {
-    font-size: 0.8rem;
-  }
-
-  /* Ã¢â‚¬â€ Quote Ã¢â‚¬â€ */
-  .quote-section {
-    padding: 3rem 0 4rem;
-  }
-
-  .quote-card {
-    max-width: 95%;
-    padding: 2.5rem 1.5rem 2rem;
-    border-radius: 12px;
-  }
-
-  .quote-text {
-    font-size: 1rem;
-    letter-spacing: 2px;
-    padding: 0 1rem;
-    margin: 0.5rem 0 1.5rem;
-    line-height: 1.5;
-  }
-
-  .quote-mark {
-    font-size: 3.5rem;
-  }
-
-  .quote-mark-left {
-    left: 1rem;
-    top: 1rem;
-  }
-
-  .quote-mark-right {
-    right: 1.5rem;
-    bottom: 1.5rem;
-  }
-
-  .quote-author {
-    font-size: 0.62rem;
-    gap: 0.6rem;
-  }
-
-  .quote-line {
-    max-width: 36px;
-  }
-
-  /* Ã¢â‚¬â€ Contact Ã¢â‚¬â€ */
-  .contact-section {
-    padding: 4rem 0 3rem;
-  }
-
-  .ct-heading {
-    font-size: clamp(2.5rem, 10vw, 4.5rem);
-  }
-
-  .ct-header {
-    margin-bottom: 2rem;
-  }
-
-  .ct-email-card {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 1.5rem;
-    gap: 1rem;
-  }
-
-  .ct-email-address {
-    font-size: 0.95rem;
-    word-break: break-all;
-  }
-
-  .ct-copy-btn {
-    width: 100%;
-    justify-content: center;
-    padding: 0.6rem 1rem;
-  }
-
-  .ct-social-grid {
-    grid-template-columns: 1fr;
-    gap: 0.8rem;
-  }
-
-  .ct-social-card {
-    padding: 1.4rem 1.2rem;
-    flex-direction: row;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .ct-social-arrow {
-    top: 50%;
-    right: 1rem;
-    transform: translateY(-50%);
-  }
-
-  .ct-social-card:hover .ct-social-arrow {
-    transform: translateY(-50%) translate(0, 0);
-  }
-
-  .ct-resume-card {
-    padding: 1.4rem 1.2rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .ct-collab-card {
-    padding: 1.5rem;
-  }
-
-  .ct-collab-title {
-    font-size: 1.3rem;
-  }
-
-  .ct-chips {
-    gap: 0.4rem;
-  }
-
-  .ct-chip {
-    font-size: 0.58rem;
-    padding: 0.4rem 0.7rem;
-  }
-}
-
-/* Ã¢â€â‚¬Ã¢â€â‚¬ Tablet (768Ã¢â‚¬â€œ1023px) Ã¢â€â‚¬Ã¢â€â‚¬ */
-@media (min-width: 768px) and (max-width: 1023px) {
-  /* Ã¢â‚¬â€ Hero Ã¢â‚¬â€ */
-  .intro-title-line {
-    font-size: clamp(4rem, 12vw, 8rem);
-  }
-
-  .intro-badge {
-    width: 120px;
-    height: 120px;
-    bottom: 2rem;
-    right: 2rem;
-  }
-
-  .intro-badge-svg {
-    width: 120px;
-    height: 120px;
-  }
-
-  /* Ã¢â‚¬â€ About Ã¢â‚¬â€ */
-  .about-section {
-    padding: 6rem 0 4.5rem;
-  }
-
-  .about-card {
-    padding: 2.5rem;
-  }
-
-  .about-card-inner {
-    grid-template-columns: 240px 1fr;
-    gap: 2.5rem;
-  }
-
-  .about-headline {
-    font-size: clamp(1.2rem, 2.4vw, 1.7rem);
-    margin-bottom: 1.4rem;
-  }
-
-  .about-bio-text p {
-    font-size: 0.9rem;
-  }
-
-  /* Ã¢â‚¬â€ Experience Ã¢â‚¬â€ */
-  .xp-header {
-    padding: 90px 28px 48px;
-  }
-
-  .xp-header-title {
-    font-size: clamp(60px, 9vw, 100px);
-  }
-
-  .xp-card-header {
-    padding: 22px 28px;
-  }
-
-  .xp-card-body {
-    padding: 0 28px 40px;
-  }
-
-  .xp-card-title {
-    font-size: clamp(20px, 3.5vw, 32px);
-  }
-
-  /* Ã¢â‚¬â€ Projects Section Ã¢â‚¬â€ */
-  .projects-section {
-    padding: 6rem 0;
-  }
-
-  .projects-header {
-    margin-bottom: 2.5rem;
-  }
-
-  /* Scrolljack cards on tablet */
-  .ps-track .pc {
-    flex: 0 0 min(55vw, 480px);
-  }
-
-  .ps-track .pc__title {
-    font-size: clamp(1.4rem, 2.8vw, 1.8rem);
-  }
-
-  /* Ã¢â‚¬â€ Skills Ã¢â‚¬â€ */
-  .skills-section {
-    padding: 5rem 0;
-  }
-
-  .marquee-content {
-    font-size: 2.2rem;
-    gap: 1.4rem;
-    padding-right: 1.4rem;
-  }
-
-  .diamond {
-    font-size: 1.8rem;
-  }
-
-  /* Ã¢â‚¬â€ Education Ã¢â‚¬â€ */
-  .education-section {
-    padding: 4.5rem 0;
-  }
-
-  .edu-card {
-    padding: 2.5rem;
-    gap: 2.5rem;
-  }
-
-  .edu-uni {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-  }
-
-  .edu-degree h3 {
-    font-size: 1.35rem;
-  }
-
-  /* Ã¢â‚¬â€ Certificates Ã¢â‚¬â€ */
-  .certificates-section {
-    padding: 5rem 0;
-  }
-
-  .cert-card {
-    width: 280px;
-  }
-
-  .cert-image {
-    height: 170px;
-  }
-
-  /* Ã¢â‚¬â€ Quote Ã¢â‚¬â€ */
-  .quote-section {
-    padding: 4rem 0 5rem;
-  }
-
-  .quote-card {
-    max-width: 88%;
-    padding: 3rem 2.5rem 2.5rem;
-  }
-
-  .quote-text {
-    font-size: 1.3rem;
-    letter-spacing: 3px;
-    padding: 0 2rem;
-  }
-
-  .quote-mark {
-    font-size: 4.5rem;
-  }
-
-  /* Ã¢â‚¬â€ Contact Ã¢â‚¬â€ */
-  .contact-section {
-    padding: 6rem 0 4rem;
-  }
-
-  .ct-heading {
-    font-size: clamp(3rem, 7vw, 5.5rem);
-  }
-
-  .ct-email-card {
-    padding: 1.8rem 2rem;
-  }
-
-  .ct-social-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.8rem;
-  }
-
-  .ct-social-card:last-child {
-    grid-column: 1 / -1;
-  }
-
-  .ct-collab-card {
-    padding: 2rem;
-  }
-
-  .ct-chip {
-    font-size: 0.6rem;
-    padding: 0.45rem 0.85rem;
-  }
-}

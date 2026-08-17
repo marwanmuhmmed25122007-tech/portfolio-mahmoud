@@ -134,53 +134,6 @@ img {
 }
 
 
-/* Responsive */
-
-/* ── Mobile (320–767px) ── */
-@media (max-width: 767px) {
-  html {
-    overflow-x: hidden;
-  }
-
-  .container {
-    padding: 0 1.1rem;
-  }
-
-  .section-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-    margin-bottom: 2.5rem;
-    padding-bottom: 1rem;
-  }
-
-  .section-title-lg {
-    font-size: clamp(2.2rem, 10vw, 3.5rem);
-  }
-
-  .section-title-xl {
-    font-size: clamp(2.5rem, 12vw, 4rem);
-  }
-}
-
-/* ── Tablet (768–1023px) ── */
-@media (min-width: 768px) and (max-width: 1023px) {
-  .container {
-    padding: 0 1.5rem;
-  }
-
-  .section-header {
-    margin-bottom: 3rem;
-  }
-
-  .section-title-lg {
-    font-size: clamp(2.8rem, 6vw, 4.5rem);
-  }
-
-  .section-title-xl {
-    font-size: clamp(3rem, 7vw, 5.5rem);
-  }
-}
 
 /* ── Reduced Motion ── */
 @media (prefers-reduced-motion: reduce) {

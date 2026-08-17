@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/components.css" />
   <link rel="stylesheet" href="css/home.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -55,14 +56,14 @@
         </div>
       </a>
 
-      <button style="cursor: none;" class="hamburger" id="navOpen" aria-label="Open navigation">
+      <button style="cursor: none;" class="hamburger" id="navOpen" aria-label="Open navigation" aria-expanded="false" aria-controls="navOverlay">
         <span></span><span></span>
       </button>
     </div>
   </nav>
 
 
-  <div class="nav-overlay" id="navOverlay" aria-hidden="true">
+  <div class="nav-overlay" id="navOverlay" aria-hidden="true" inert>
     <div class="nav-backdrop" id="navBackdrop"></div>
     <button style="cursor: none;" class="nav-close" id="navClose" aria-label="Close navigation">
       <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2.2"
@@ -178,8 +179,7 @@
 
 
     <div class="xp-header">
-      <h2 class="xp-header-title">EXPERI<wbr>ENCE<span>.</span></h2>
-      <div class="xp-header-divider"></div>
+      <h2 class="xp-header-title">EXPERIENCE<span>.</span></h2>
     </div>
 
 
@@ -188,7 +188,9 @@
 
       <article class="xp-card" id="xpCard0">
         <div class="xp-card-header">
-          <span class="xp-card-index">01</span>
+          <div class="xp-card-logo-wrap">
+            <img src="assets/images/bodyTeam.webp" alt="Body Team Engineer Logo" class="xp-card-logo">
+          </div>
           <h3 class="xp-card-title">Body Team Engineer</h3>
           <div class="xp-card-meta">
             <span class="xp-card-company">Shoubra Racing Team</span>
@@ -202,15 +204,15 @@
           </p>
           <ul class="xp-points">
             <li class="xp-point">
-              <span class="xp-point-num">01</span>
+              <span class="xp-point-bullet">→</span>
               <span class="xp-point-text">CAD Modelling &amp; Aerodynamic Body Design</span>
             </li>
             <li class="xp-point">
-              <span class="xp-point-num">02</span>
+              <span class="xp-point-bullet">→</span>
               <span class="xp-point-text">Finite Element Analysis (FEA) for Drag Reduction</span>
             </li>
             <li class="xp-point">
-              <span class="xp-point-num">03</span>
+              <span class="xp-point-bullet">→</span>
               <span class="xp-point-text">Material Selection under Competitive Conditions</span>
             </li>
           </ul>
@@ -226,11 +228,13 @@
 
       <article class="xp-card" id="xpCard1">
         <div class="xp-card-header">
-          <span class="xp-card-index">02</span>
+          <div class="xp-card-logo-wrap">
+            <img src="assets/images/IEEE.webp" alt="IEEE BUB" class="xp-card-logo">
+          </div>
           <h3 class="xp-card-title">Robotics &amp; Arduino Member</h3>
           <div class="xp-card-meta">
             <span class="xp-card-company">IEEE BUB Student Branch</span>
-            <span class="xp-card-date">2023 — Present</span>
+            <span class="xp-card-date">2025 — Present</span>
           </div>
         </div>
         <div class="xp-card-body">
@@ -241,15 +245,15 @@
           </p>
           <ul class="xp-points">
             <li class="xp-point">
-              <span class="xp-point-num">01</span>
+              <span class="xp-point-bullet">→</span>
               <span class="xp-point-text">Arduino Robotic Systems Development</span>
             </li>
             <li class="xp-point">
-              <span class="xp-point-num">02</span>
+              <span class="xp-point-bullet">→</span>
               <span class="xp-point-text">Hardware–Software Integration &amp; Sensor Calibration</span>
             </li>
             <li class="xp-point">
-              <span class="xp-point-num">03</span>
+              <span class="xp-point-bullet">→</span>
               <span class="xp-point-text">Real-Time Control Algorithms for Competitive Robotics</span>
             </li>
           </ul>
@@ -265,37 +269,38 @@
 
       <article class="xp-card" id="xpCard2">
         <div class="xp-card-header">
-          <span class="xp-card-index">03</span>
-          <h3 class="xp-card-title">Business Development Member</h3>
+          <div class="xp-card-logo-wrap">
+            <img src="assets/images/HA.webp" alt="HA Consulting Group" class="xp-card-logo">
+          </div>
+          <h3 class="xp-card-title">Industrial Automation & Control Trainee</h3>
           <div class="xp-card-meta">
-            <span class="xp-card-company">Rally Benha University</span>
-            <span class="xp-card-date">Apr 2024 — 2025</span>
+            <span class="xp-card-company">HA Consulting Group</span>
+            <span class="xp-card-date">Jul 2025 — Sep 2025</span>
           </div>
         </div>
         <div class="xp-card-body">
           <p class="xp-card-desc">
-            Supporting sponsorship outreach, strategic event planning, and partnership development
-            to strengthen the team's communication, brand presence, and long-term visibility.
-          </p>
+            Completed an intensive industrial automation diploma featuring 60+ hands-on lab tasks across hardwired
+            classic control systems, multi-vendor PLC programming, and VFD parameter configuration</p>
           <ul class="xp-points">
             <li class="xp-point">
-              <span class="xp-point-num">01</span>
-              <span class="xp-point-text">Sponsorship Outreach &amp; Strategic Event Planning</span>
+              <span class="xp-point-bullet">→</span>
+              <span class="xp-point-text">Classic Control</span>
             </li>
             <li class="xp-point">
-              <span class="xp-point-num">02</span>
-              <span class="xp-point-text">Partnership Building &amp; Brand Communication</span>
+              <span class="xp-point-bullet">→</span>
+              <span class="xp-point-text">PLC Basic Programming</span>
             </li>
             <li class="xp-point">
-              <span class="xp-point-num">03</span>
-              <span class="xp-point-text">Team Visibility &amp; Marketing Initiatives</span>
+              <span class="xp-point-bullet">→</span>
+              <span class="xp-point-text">Electric Motor & Drive Programming</span>
             </li>
           </ul>
           <div class="xp-tags">
-            <span class="xp-tag">Business Dev</span>
-            <span class="xp-tag">Teamwork</span>
-            <span class="xp-tag">Communication</span>
-            <span class="xp-tag">Marketing</span>
+            <span class="xp-tag">Automation</span>
+            <span class="xp-tag">PLC</span>
+            <span class="xp-tag">CLASSIC CONTROL</span>
+            <span class="xp-tag">SENSORS</span>
           </div>
         </div>
       </article>
@@ -398,7 +403,8 @@
 
 
               <article class="pc" data-index="03">
-                <a href="https://github.com/Shamekh21/Fully-Automated-Industrial-Inspection-Sorting-System-with-Digital-Twin" target="_blank" class="pc__link">
+                <a href="https://github.com/Shamekh21/Fully-Automated-Industrial-Inspection-Sorting-System-with-Digital-Twin"
+                  target="_blank" class="pc__link">
                   <div class="pc__img-wrap">
                     <img src="assets/images/project(4).webp" alt="Industrial Sorting & Digital Twin" class="pc__img"
                       loading="lazy" decoding="async">
@@ -414,8 +420,8 @@
                       <div class="pc__content">
                         <h3 class="pc__title">AI SORTING & DIGITAL TWIN</h3>
                         <p class="pc__sub">
-                            Fully automated CPPS integrating PyTorch CNN defect detection, UR5 robotic sorting, MATLAB
-                            kinematics, and CoppeliaSim digital twin.
+                          Fully automated CPPS integrating PyTorch CNN defect detection, UR5 robotic sorting, MATLAB
+                          kinematics, and CoppeliaSim digital twin.
                         </p>
                         <div class="pc__bottom">
                           <div class="pc__tags">
@@ -614,7 +620,8 @@
           <div class="cert-card">
             <div class="cert-stripe"></div>
             <div class="cert-image">
-              <img src="assets/images/ha-motor.webp" alt="Electric Motor & Drive Programming" loading="lazy" decoding="async">
+              <img src="assets/images/ha-motor.webp" alt="Electric Motor & Drive Programming" loading="lazy"
+                decoding="async">
             </div>
             <div class="cert-content">
               <div class="cert-icon"><i class="fa-solid fa-award"></i></div>
@@ -660,7 +667,8 @@
           <div class="cert-card">
             <div class="cert-stripe"></div>
             <div class="cert-image">
-              <img src="assets/images/nti-embedded.webp" alt="C and Embedded C programming" loading="lazy" decoding="async">
+              <img src="assets/images/nti-embedded.webp" alt="C and Embedded C programming" loading="lazy"
+                decoding="async">
             </div>
             <div class="cert-content">
               <div class="cert-icon"><i class="fa-solid fa-award"></i></div>
@@ -676,7 +684,8 @@
           <div class="cert-card">
             <div class="cert-stripe"></div>
             <div class="cert-image">
-              <img src="assets/images/ieee-ai.webp" alt="AI & Computer Vision - 2nd Place" loading="lazy" decoding="async">
+              <img src="assets/images/ieee-ai.webp" alt="AI & Computer Vision - 2nd Place" loading="lazy"
+                decoding="async">
             </div>
             <div class="cert-content">
               <div class="cert-icon"><i class="fa-solid fa-award"></i></div>

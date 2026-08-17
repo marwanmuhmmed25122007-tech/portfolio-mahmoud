@@ -56,18 +56,41 @@ if (cursorDot && cursorRing && !('ontouchstart' in window)) {
   document.body.style.cursor = 'auto';
 }
 
-/* NAV OVERLAY (mobile) */
+/* NAV OVERLAY */
+if (navOverlay && !navOverlay.classList.contains('open')) {
+  navOverlay.setAttribute('aria-hidden', 'true');
+  navOverlay.setAttribute('inert', '');
+  navOpen?.setAttribute('aria-expanded', 'false');
+}
+
 function openNav() {
-  navOverlay?.classList.add('open');
-  navOverlay?.setAttribute('aria-hidden', 'false');
+  if (!navOverlay) return;
+  navOverlay.removeAttribute('inert');
+  navOverlay.setAttribute('aria-hidden', 'false');
+  navOverlay.classList.add('open');
   navOpen?.setAttribute('aria-expanded', 'true');
   document.body.style.overflow = 'hidden';
   document.body.classList.add('menu-open');
+
+  // Focus close button inside overlay for accessibility
+  navClose?.focus();
 }
 
 function closeNav() {
-  navOverlay?.classList.remove('open');
-  navOverlay?.setAttribute('aria-hidden', 'true');
+  if (!navOverlay) return;
+
+  // Move focus back to trigger button before marking overlay as hidden/inert
+  if (navOverlay.contains(document.activeElement)) {
+    if (navOpen) {
+      navOpen.focus();
+    } else if (document.activeElement && typeof document.activeElement.blur === 'function') {
+      document.activeElement.blur();
+    }
+  }
+
+  navOverlay.classList.remove('open');
+  navOverlay.setAttribute('aria-hidden', 'true');
+  navOverlay.setAttribute('inert', '');
   navOpen?.setAttribute('aria-expanded', 'false');
   document.body.style.overflow = '';
   document.body.classList.remove('menu-open');
