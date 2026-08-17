@@ -11,32 +11,60 @@
   const titleLines = introSec.querySelectorAll('.intro-title-line');
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  let entranceCompleted = false;
+  let entranceTl = null;
+
+  function ensureVisible() {
+    if (topLabel) {
+      topLabel.style.opacity = '1';
+      topLabel.style.transform = 'none';
+    }
+    titleLines.forEach(function(line) {
+      line.style.opacity = '1';
+      line.style.transform = 'none';
+    });
+    if (window.scrollY <= 10) {
+      introSec.style.opacity = '1';
+      introSec.style.transform = 'none';
+    }
+  }
+
   function runEntrance() {
+    if (entranceCompleted) return;
+
     if (prefersReducedMotion) {
-      /* Immediately show elements without animation for reduced-motion users */
-      if (topLabel) { topLabel.style.opacity = 1; topLabel.style.transform = 'none'; }
-      titleLines.forEach(function(line) { line.style.opacity = 1; line.style.transform = 'none'; });
+      ensureVisible();
+      entranceCompleted = true;
       return;
     }
 
-    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    entranceTl = gsap.timeline({
+      defaults: { ease: 'power3.out' },
+      onComplete: () => {
+        entranceCompleted = true;
+      }
+    });
 
     if (topLabel) {
-      tl.to(topLabel, {
-        opacity: 1,
-        y: 0,
-        duration: 0.9,
-      }, 0);
+      entranceTl.fromTo(topLabel,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.9 },
+        0
+      );
     }
 
     if (titleLines.length) {
-      tl.to(titleLines, {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        stagger: 0.15,
-        ease: 'power3.out'
-      }, topLabel ? 0.2 : 0);
+      entranceTl.fromTo(titleLines,
+        { opacity: 0, y: 80 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          stagger: 0.15,
+          ease: 'power3.out'
+        },
+        topLabel ? 0.2 : 0
+      );
     }
   }
 
@@ -50,33 +78,121 @@
       }
     });
     observer.observe(loaderEl, { attributes: true, attributeFilter: ['class'] });
+
+    // Safety fallback: if loader completes in background tab or observer timing was missed
+    setTimeout(() => {
+      if (!entranceCompleted && (!loaderEl || loaderEl.classList.contains('done') || loaderEl.style.display === 'none')) {
+        runEntrance();
+      }
+    }, 2500);
   } else {
     runEntrance();
   }
 
   // GSAP ScrollTrigger for Scroll Micro-Interactions
-  if (typeof ScrollTrigger !== 'undefined' && !prefersReducedMotion) {
+  if (typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
 
-    /* Use matchMedia to disable hero parallax on mobile where it adds no value */
-    ScrollTrigger.matchMedia({
-      '(min-width: 769px)': function() {
-        gsap.to(introSec, {
-          y: -120,
-          scale: 0.93,
-          opacity: 0,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: introSec,
-            start: 'top top',
-            end: 'bottom top',
-            scrub: true
-          }
+    let heroTrigger = null;
+
+    if (!prefersReducedMotion) {
+      const mm = gsap.matchMedia ? gsap.matchMedia() : null;
+
+      if (mm) {
+        mm.add('(min-width: 769px)', () => {
+          heroTrigger = gsap.fromTo(introSec,
+            { y: 0, scale: 1, opacity: 1 },
+            {
+              y: -120,
+              scale: 0.93,
+              opacity: 0,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: introSec,
+                start: 'top top',
+                end: 'bottom top',
+                scrub: true,
+                invalidateOnRefresh: true,
+                fastScrollEnd: true,
+                onUpdate: (self) => {
+                  if (self.progress <= 0.001 || window.scrollY <= 10) {
+                    gsap.set(introSec, { opacity: 1, y: 0, scale: 1 });
+                  }
+                },
+                onLeaveBack: () => {
+                  gsap.set(introSec, { opacity: 1, y: 0, scale: 1 });
+                }
+              }
+            }
+          );
+
+          return () => {
+            if (heroTrigger) heroTrigger.kill();
+          };
         });
+      } else {
+        heroTrigger = gsap.fromTo(introSec,
+          { y: 0, scale: 1, opacity: 1 },
+          {
+            y: -120,
+            scale: 0.93,
+            opacity: 0,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: introSec,
+              start: 'top top',
+              end: 'bottom top',
+              scrub: true,
+              invalidateOnRefresh: true,
+              onUpdate: (self) => {
+                if (self.progress <= 0.001 || window.scrollY <= 10) {
+                  gsap.set(introSec, { opacity: 1, y: 0, scale: 1 });
+                }
+              },
+              onLeaveBack: () => {
+                gsap.set(introSec, { opacity: 1, y: 0, scale: 1 });
+              }
+            }
+          }
+        );
       }
-    });
-  } else if (typeof ScrollTrigger !== 'undefined') {
-    gsap.registerPlugin(ScrollTrigger);
+    }
+
+    // Direct scroll recovery check for fast scroll up
+    window.addEventListener('scroll', () => {
+      if (window.scrollY <= 10) {
+        if (introSec.style.opacity !== '1' || introSec.style.visibility === 'hidden') {
+          gsap.set(introSec, { opacity: 1, y: 0, scale: 1 });
+        }
+        if (entranceCompleted) {
+          titleLines.forEach(line => {
+            if (line.style.opacity !== '1') line.style.opacity = '1';
+          });
+          if (topLabel && topLabel.style.opacity !== '1') topLabel.style.opacity = '1';
+        }
+      }
+    }, { passive: true });
+
+    // Handle tab switching & visibility changes
+    function handleVisibility() {
+      if (document.visibilityState === 'visible') {
+        ScrollTrigger.refresh();
+        if (loaderEl && loaderEl.classList.contains('done')) {
+          if (!entranceCompleted) {
+            runEntrance();
+          } else {
+            ensureVisible();
+          }
+        }
+        if (window.scrollY <= 50) {
+          gsap.set(introSec, { opacity: 1, y: 0, scale: 1 });
+        }
+      }
+    }
+
+    document.addEventListener('visibilitychange', handleVisibility);
+    window.addEventListener('pageshow', handleVisibility);
+    window.addEventListener('focus', handleVisibility);
   }
 })();
 
