@@ -214,93 +214,97 @@ const sectionObserver = new IntersectionObserver((entries) => {
 sections.forEach(sec => sectionObserver.observe(sec));
 
 
-/* PROJECTS SECTION — Single horizontal scroll handler (consolidated) */
+/* PROJECTS SECTION — Horizontal scroll handler */
 (function () {
-  var outer = document.getElementById('psOuter');
-  var track = document.getElementById('psTrack');
+  'use strict';
 
-  if (!outer || !track) return;
-
-  var maxTranslate = 0;
-  var scrollHandler = null;
-
-  function isMobile() {
-    return window.innerWidth <= 768;
-  }
-
-  function recalc() {
-    maxTranslate = Math.max(0, track.scrollWidth - track.clientWidth);
-
-    var extraScreens = Math.max(1, Math.ceil(maxTranslate / window.innerHeight) + 1);
-    outer.style.height = (extraScreens * 100) + 'vh';
-  }
-
-  function onScroll() {
-    if (isMobile()) return;
-
-    var rect = outer.getBoundingClientRect();
-    var total = outer.offsetHeight - window.innerHeight;
-    if (total <= 0) {
-      track.style.transform = 'translateX(0px)';
-      return;
-    }
-
-    var scrolled = -rect.top;
-    var progress = scrolled / total;
-    progress = Math.max(0, Math.min(1, progress));
-
-    track.style.transform = 'translateX(-' + (progress * maxTranslate) + 'px)';
-  }
-
-  function setup() {
-    if (isMobile()) {
-      outer.style.height = 'auto';
-      track.style.transform = 'none';
-      if (scrollHandler) {
-        window.removeEventListener('scroll', scrollHandler);
-        scrollHandler = null;
-      }
-      return;
-    }
-    recalc();
-    if (!scrollHandler) {
-      scrollHandler = onScroll;
-      window.addEventListener('scroll', scrollHandler, { passive: true });
-    }
-    onScroll();
-  }
-
-  var images = track.querySelectorAll('img');
-  var loaded = 0;
-  var total = images.length;
-
-  function onImgDone() {
-    loaded++;
-    if (loaded >= total) {
-      setup();
-    }
-  }
-
-  if (total === 0) {
-    setup();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
   } else {
+    init();
+  }
+
+  function init() {
+    var outer = document.getElementById('psOuter');
+    var track = document.getElementById('psTrack');
+
+    if (!outer || !track) return;
+
+    var maxTranslate = 0;
+    var ticking = false;
+
+    function isMobile() {
+      return window.innerWidth <= 768;
+    }
+
+    function recalc() {
+      if (isMobile()) {
+        outer.style.height = 'auto';
+        track.style.transform = 'none';
+        return;
+      }
+
+      maxTranslate = Math.max(0, track.scrollWidth - track.clientWidth);
+      var extraScreens = Math.max(1, Math.ceil(maxTranslate / window.innerHeight) + 1);
+      outer.style.height = (extraScreens * 100) + 'vh';
+      update();
+    }
+
+    function onScroll() {
+      if (isMobile()) return;
+      if (!ticking) {
+        requestAnimationFrame(update);
+        ticking = true;
+      }
+    }
+
+    function update() {
+      ticking = false;
+      if (isMobile()) return;
+
+      var rect = outer.getBoundingClientRect();
+      var total = outer.offsetHeight - window.innerHeight;
+      if (total <= 0) {
+        track.style.transform = 'translateX(0px)';
+        return;
+      }
+
+      var scrolled = -rect.top;
+      var progress = scrolled / total;
+      progress = Math.max(0, Math.min(1, progress));
+
+      track.style.transform = 'translateX(-' + (progress * maxTranslate) + 'px)';
+    }
+
+    // Initialize immediately without waiting for images or window.onload
+    recalc();
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(recalc, 100);
+    }, { passive: true });
+
+    // Non-blocking listeners: adjust dimensions if images/fonts finish loading later
+    var images = track.querySelectorAll('img');
     images.forEach(function (img) {
-      if (img.complete) {
-        onImgDone();
-      } else {
-        img.addEventListener('load', onImgDone);
-        img.addEventListener('error', onImgDone);
+      if (!img.complete) {
+        img.addEventListener('load', recalc, { once: true });
+        img.addEventListener('error', recalc, { once: true });
       }
     });
+
+    window.addEventListener('load', recalc);
+
+    if (typeof ResizeObserver !== 'undefined') {
+      var ro = new ResizeObserver(function () {
+        recalc();
+      });
+      ro.observe(track);
+    }
   }
-
-  window.addEventListener('load', setup);
-
-  var resizeTimer;
-  window.addEventListener('resize', function () {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(setup, 200);
-  });
 })();
 
 /*  CERTIFICATES SLIDER — clone cards */
