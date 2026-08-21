@@ -189,6 +189,7 @@
 .about-divider {
   height: 1px;
   background: var(--border);
+  margin-top: 1.5rem;
   margin-bottom: 3.5rem;
   width: 100%;
 }
